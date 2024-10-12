@@ -1,9 +1,10 @@
-import { Client, GatewayIntentBits, Events, Collection } from "discord.js";
+import { Client, GatewayIntentBits, Events, Collection, Interaction, OmitPartialGroupDMChannel, Message } from "discord.js";
 import config from '../config.json'
 import ClientWithCommands from "./types/ClientWithCommands";
 import fs from 'node:fs';
 import path from 'node:path';
 import InsertCommandsIntoClient from "./util/insertCommandsIntoClient";
+import sendMessageButtons from "./util/sendButtonsMessage";
 
 
 //The reason its importante to make an extended class with an added .commands property is to add all the commmands to the object so we can use them later.
@@ -23,6 +24,24 @@ client.once(Events.ClientReady, (readyClient)=> {
 
 client.login(DiscordToken)
 
+
+client.on("messageCreate", async (interaction: OmitPartialGroupDMChannel<Message>) => {
+    if (interaction.content == '!buttons') {
+        await sendMessageButtons(interaction)
+    }
+})
+
+client.on("interactionCreate", (interaction) => {
+
+    if (interaction.isButton() && interaction.customId == 'create-ticket') {
+        client.commands.get('new_ticket').execute(interaction); 
+    }
+
+    if (interaction.isButton() && interaction.customId == 'close-ticket') {
+        client.commands.get('close_ticket').execute(interaction); 
+    }
+
+})
 
 client.on(Events.InteractionCreate, (interaction) => {
     if (interaction.isChatInputCommand()) {

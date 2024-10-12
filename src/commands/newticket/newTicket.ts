@@ -8,7 +8,6 @@ module.exports = {
 		.setDescription('Create a new ticket manually'),
 	async execute(interaction: CommandInteraction) {
 
-        console.log('comeon')
         const TicketsCategory: GuildBasedChannel | undefined = interaction.guild?.channels.cache.get(config.TicketsCategoryID)
 
         if (!TicketsCategory) return interaction.reply('Category not found');
