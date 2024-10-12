@@ -1,0 +1,32 @@
+{
+  "name": "rolleriteticketbot",
+  "version": "1.0.0",
+  "description": "Bot for a technical test to join Rollerite team",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "register": "nodemon src/deploy-commands.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinManuelMarte/RolleriteTicketsBot.git"
+  },
+  "keywords": [
+    "tickets",
+    "bot"
+  ],
+  "author": "KevinMarte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KevinManuelMarte/RolleriteTicketsBot/issues"
+  },
+  "homepage": "https://github.com/KevinManuelMarte/RolleriteTicketsBot#readme",
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "prisma": "^5.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
