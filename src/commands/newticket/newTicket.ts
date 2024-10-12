@@ -8,6 +8,7 @@ module.exports = {
 		.setDescription('Create a new ticket manually'),
 	async execute(interaction: CommandInteraction) {
 
+        if (!interaction.isButton() && interaction.channelId != config.CommandsChannelID) return await interaction.reply({content: `You are not allowed to use that command outside <#${config.CommandsChannelID}>`, ephemeral: true})
         const TicketsCategory: GuildBasedChannel | undefined = interaction.guild?.channels.cache.get(config.TicketsCategoryID)
 
         if (!TicketsCategory) return interaction.reply('Category not found');
